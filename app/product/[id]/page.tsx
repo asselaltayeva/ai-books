@@ -1,52 +1,160 @@
-import { getProduct } from '@/actions/products';
-import Link from 'next/link';
-import Image from 'next/image'; // Ensure Image is imported
-import React from 'react';
+import { getProduct } from "@/actions/products";
+import Link from "next/link";
+import Image from "next/image";
+import React from "react";
+import ProductQuantity from "@/components/product/ProductQuantity";
+import { ArrowLeft, Shield, Truck, RotateCcw } from "lucide-react";
 
-type Props = {
-    params: { id: string };
-};
+interface ProductPageProps {
+  params: { id: string };
+}
 
-const ProductPage = async ({ params: { id } }: Props) => {
-    const product = await getProduct(id);
+export default async function ProductPage({
+  params: { id },
+}: ProductPageProps) {
+  let product;
 
+  try {
+    product = await getProduct(id);
+  } catch (error) {
+    console.error("Error fetching product:", error);
     return (
-        <div className="min-h-screen">
-            <div className="container mx-auto px-4 py-6">
-                <Link
-                    href="/"
-                    className="inline-flex items-center text-lg font-medium mb-6 hover:text-gray-600"
-                >
-                    Back
-                </Link>
-
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div className="lg:col-span-2 flex flex-col gap-6">
-                        {product.images[0].src && (
-                            <div
-                                className="aspect-auto rounded-lg overflow-hidden flex items-center justify-center
-                            h-[80vh]"
-                            >
-                                <Image
-                                    src={product.images[0].src}
-                                    alt={product.images[0].alt || 'Product Image'}
-                                    width={600}
-                                    height={600}
-                                    className="max-w-full max-h-full object-contain"
-                                    priority
-                                />
-                            </div>
-                        )}
-
-                        <div className='flex flex-col gap-4'>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-slate-900 mb-4">
+            Product Not Found
+          </h1>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-lg font-medium text-blue-600 hover:text-blue-800 transition-colors"
+          >
+            <ArrowLeft size={20} />
+            Return to Home
+          </Link>
         </div>
+      </div>
     );
-};
+  }
 
-export default ProductPage;
+  if (!product) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-slate-900 mb-4">
+            Product Not Found
+          </h1>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-lg font-medium text-blue-600 hover:text-blue-800 transition-colors"
+          >
+            <ArrowLeft size={20} />
+            Return
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50/30">
+      <div className="container mx-auto px-4 py-8">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 transition-colors mb-8 group"
+        >
+          <ArrowLeft
+            size={20}
+            className="group-hover:-translate-x-1 transition-transform"
+          />
+          <span className="text-lg font-medium">Back</span>
+        </Link>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+          <section className="flex justify-center">
+            {product.images?.[0]?.src ? (
+              <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50">
+                <Image
+                  src={product.images[0].src}
+                  alt={product.images[0].alt || "Product Image"}
+                  fill
+                  className="object-contain p-4 hover:scale-105 transition-transform duration-300"
+                  priority
+                />
+              </div>
+            ) : (
+              <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+                <span className="text-slate-400 text-lg">
+                  No Image Available
+                </span>
+              </div>
+            )}
+          </section>
+
+          <section className="flex flex-col gap-8">
+            <div className="flex flex-col items-start gap-4">
+              <div className="w-3 h-8 rounded-full"></div>
+              <h1 className="text-3xl font-bold tracking-tight text-slate-700 text-left">
+                {product.name}
+              </h1>
+
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-wrap gap-4 mt-2">
+                  <div className="flex items-center gap-2 text-slate-600">
+                    <Truck size={18} className="text-green-600" />
+                    <span className="text-sm font-medium">Free Shipping</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-600">
+                    <Shield size={18} className="text-blue-600" />
+                    <span className="text-sm font-medium">zyz</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-slate-600">
+                    <RotateCcw size={18} className="text-purple-600" />
+                    <span className="text-sm font-medium">zyz</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="border-t border-slate-200 pt-6">
+              <article
+                className="text-slate-700 leading-relaxed text-md bg-white/50 rounded-2xl p-6 border border-slate-100"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    product.description ||
+                    '<p class="text-slate-500">No description available.</p>',
+                }}
+              />
+            </div>
+
+            <div className="bg-white/60 backdrop-blur-md rounded-2xl p-4 border border-slate-200/80 shadow-sm">
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-md font-medium text-slate-600">
+                    Select Quantity
+                  </span>
+                  <div className="flex items-center gap-1.5 text-xs text-green-600 bg-green-50 px-2 py-1 rounded-full">
+                    <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+                    In Stock
+                  </div>
+                </div>
+
+                <div className="scale-90 transform origin-left">
+                  <ProductQuantity product={product} />
+                </div>
+
+                <div className="flex gap-3 pt-2">
+                  <button className="flex-1 bg-white border border-slate-300 text-slate-700 py-2.5 px-4 rounded-xl font-semibold hover:bg-slate-50 hover:border-slate-400 transition-all duration-200 text-sm shadow-xs active:scale-95">
+                    Add to Cart
+                  </button>
+                  <button className="flex-1 bg-slate-800 text-white py-2.5 px-4 rounded-xl font-semibold hover:bg-slate-700 transition-all duration-200 text-sm shadow-sm active:scale-95">
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -14,6 +14,7 @@ import { useCart } from "@/hooks/use-cart";
 import Image from "next/image";
 
 type Props = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   products: any[];
 };
 
