@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import ProductQuantity from "@/components/product/ProductQuantity";
-import { ArrowLeft, Shield, Truck, RotateCcw } from "lucide-react";
+import { ArrowLeft, Shield, Truck, RotateCcw, Banknote } from "lucide-react";
 
 interface ProductPageProps {
   params: { id: string };
@@ -99,13 +99,13 @@ export default async function ProductPage({
 
               <div className="flex flex-col gap-3">
                 <div className="flex flex-wrap gap-4 mt-2">
+                <div className="flex items-center gap-2 text-slate-700">
+                    <Banknote size={18} className="text-emerald-600" />
+                    <span className="text-sm font-medium">{product.price} won </span>
+                </div>
                   <div className="flex items-center gap-2 text-slate-600">
                     <Truck size={18} className="text-green-600" />
                     <span className="text-sm font-medium">Free Shipping</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-slate-600">
-                    <Shield size={18} className="text-blue-600" />
-                    <span className="text-sm font-medium">zyz</span>
                   </div>
                   <div className="flex items-center gap-2 text-slate-600">
                     <RotateCcw size={18} className="text-purple-600" />
