@@ -2,18 +2,14 @@
 
 import { useCart } from '@/hooks/use-cart';
 import React from 'react'
+import Checkout from '../Checkout';
 
-type Props = {}
 
-const ProductAction = (props: Props) => {
+
+const ProductAction = () => {
     const {
         items: cartItems,
-        addItem: addToCart,
-        removeItem: removeFromCart,
-        updateQuantity,
         cartTotal,
-        isOpen,
-        setIsOpen,
     } = useCart();
     
   return (
