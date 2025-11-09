@@ -28,7 +28,7 @@ const ProductQuantity = ({ product }: Props) => {
 
     return (
         <div className="flex items-center space-x-6 justify-center">
-            {[...Array(5)].map((_, index) => (
+            {[...Array(10)].map((_, index) => (
                 <span
                     key={index + 1}
                     className={`inline-flex items-center justify-center font-medium rounded-md hover:underline cursor-pointer ${

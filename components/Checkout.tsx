@@ -1,52 +1,50 @@
-'use client'
-import React, { useState } from 'react'
-import { Button } from './ui/button'
-import { useCart } from '@/hooks/use-cart'
+"use client";
 
-type Props = object
+import React, { useState } from "react";
+import { Button } from "./ui/button";
+import { useCart } from "@/hooks/use-cart";
 
-const Checkout = (props: Props) => {
-  const { items } = useCart()
-  const [loading, setLoading] = useState(false)
+const Checkout = () => {
+  const { items = [] } = useCart(); 
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const onCheckout = async () => {
-    setLoading(true)
+    setLoading(true);
+    setMessage("");
+
     try {
-      const response = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items }),
-      })
+      console.log("Checkout");
+      // simulate async
+      await new Promise((res) => setTimeout(res, 1000));
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok')
-      }
-
-      const { url } = await response.json()
-      if (!url) throw new Error('Checkout URL is missing')
-
-      // Redirect user manually to Stripe Checkout
-      window.location.href = url
-
+      setMessage("Items are added to cart");
     } catch (error) {
-      console.error('Error:', error)
+      console.error("Error:", error);
+      setMessage("Error during checkout simulation.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
-    <div className="mt-6 grid gap-4">
+    <div className="mt-2 grid gap-4">
       <Button
         size="lg"
         className="w-full"
         disabled={loading || items.length === 0}
         onClick={onCheckout}
       >
-        {loading ? 'Processing...' : 'Checkout'}
+        {loading ? "Processing..." : "Checkout"}
       </Button>
-    </div>
-  )
-}
 
-export default Checkout
+      {message && (
+        <p className="mt-2 text-center text-sm text-muted-foreground">
+          {message}
+        </p>
+      )}
+    </div>
+  );
+};
+
+export default Checkout;

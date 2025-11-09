@@ -5,6 +5,7 @@ import React from "react";
 import ProductQuantity from "@/components/product/ProductQuantity";
 import { ArrowLeft, Truck, RotateCcw, Banknote } from "lucide-react";
 import ProductCartSheet from "@/components/ProductCartSheet";
+import ProductAction from "@/components/product/ProductAction";
 
 interface ProductPageProps {
   params: { id: string };
@@ -75,7 +76,7 @@ export default async function ProductPage({
       <div className="grid grid-cols-1 lg:grid-cols-2 max-w-7xl mx-auto">
         <section className="flex justify-center mt-12">
           {product.images?.[0]?.src ? (
-            <div className="relative w-168 aspect-square rounded-3xl overflow-hidden">
+            <div className="relative w-168 rounded-3xl overflow-hidden">
               <Image
                 src={product.images[0].src}
                 alt={product.images[0].alt || "Product Image"}
@@ -132,7 +133,7 @@ export default async function ProductPage({
           <div className="bg-white/60 backdrop-blur-md rounded-2xl p-4 border border-slate-200/80 shadow-sm">
             <div className="flex flex-col gap-4">
               <div className="flex items-center justify-between">
-                <span className="text-md font-medium text-slate-600">
+                <span className="text-sm font-medium text-slate-600 ml-5">
                   Select Quantity
                 </span>
                 <div className="flex items-center gap-1.5 text-xs text-green-600 bg-green-50 px-2 py-1 rounded-full">
@@ -145,17 +146,13 @@ export default async function ProductPage({
                 <ProductQuantity product={product} />
               </div>
 
-              <div className="flex gap-3 pt-2">
-                <button className="flex-1 bg-white border border-slate-300 text-slate-700 py-2.5 px-4 rounded-xl font-semibold hover:bg-slate-50 hover:border-slate-400 transition-all duration-200 text-sm shadow-xs active:scale-95">
-                  Add to Cart
-                </button>
-                <button className="flex-1 bg-slate-800 text-white py-2.5 px-4 rounded-xl font-semibold hover:bg-slate-700 transition-all duration-200 text-sm shadow-sm active:scale-95">
-                  Buy Now
-                </button>
+              <div className="flex gap-3">
+                <ProductAction />
               </div>
             </div>
           </div>
         </section>
+
       </div>
     </div>
   );
