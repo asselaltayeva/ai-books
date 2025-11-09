@@ -19,7 +19,7 @@ type Props = {
 };
 
 const ProductGrid = ({ products }: Props) => {
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
 
   const {
     isOpen,
@@ -84,7 +84,7 @@ const ProductGrid = ({ products }: Props) => {
                 </div>
               ) : (
                 <div className="flex flex-col h-full">
-                  <div className="flex-1 overflow-auto py-6">
+                  <div className="flex-1 overflow-auto p-6">
                     <ul className="space-y-6">
                       {cartItems.map((item) => (
                         <li key={item.id} className="flex gap-4">
@@ -100,7 +100,7 @@ const ProductGrid = ({ products }: Props) => {
                           <div className="flex flex-1 flex-col">
                             <div className="flex justify-between text-base font-medium text-gray-900">
                               <h3>{item.name}</h3>
-                              <p className="ml-4">${item.price}</p>
+                              <p className="ml-4">{item.price}</p>
                             </div>
                             <div className="flex items-center mt-2">
                               <button
@@ -136,10 +136,10 @@ const ProductGrid = ({ products }: Props) => {
                       ))}
                     </ul>
                   </div>
-                  <div className="border-t border-gray-200 py-6">
+                  <div className="border-t border-gray-200 p-6">
                     <div className="flex justify-between text-base font-medium text-gray-900">
                       <p>Subtotal</p>
-                      <p>${cartTotal}</p>
+                      <p>{cartTotal} won</p>
                     </div>
                     {/* <Checkout/> */}
                   </div>
