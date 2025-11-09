@@ -11,6 +11,7 @@ import Image from "next/image";
 import { Minus, Plus, ShoppingCart, X } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";
 import React from "react";
+import Checkout from "./Checkout";
 
 export default function ProductCartSheet() {
   const {
@@ -109,6 +110,7 @@ export default function ProductCartSheet() {
                 <p>Subtotal</p>
                 <p>{cartTotal} won</p>
               </div>
+              <Checkout/>
             </div>
           </div>
         )}
