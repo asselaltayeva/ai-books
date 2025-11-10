@@ -1,7 +1,7 @@
 export default function Footer() {
     return (
       <footer className="border-t bg-gradient-to-br from-slate-50 to-blue-50/30 py-12 backdrop-blur-sm">
-        <div className="container px-4 md:px-6 max-w-6xl mx-auto">
+        <div className="container px-4 md:px-6 max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
   
             <div className="text-center md:text-left">

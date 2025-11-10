@@ -107,7 +107,7 @@ export default async function ProductPage({
 
           <div className="border-t border-slate-200 pt-6">
             <article
-              className="text-slate-700 leading-relaxed text-md bg-white/50 rounded-2xl p-6 border border-slate-100"
+              className="text-slate-700 leading-relaxed text-md bg-white/50 rounded-2xl p-6 border border-slate-100 text-justify space-y-4"
               dangerouslySetInnerHTML={{
                 __html:
                   product.description || '<p class="text-slate-500">No description available.</p>',
@@ -115,7 +115,7 @@ export default async function ProductPage({
             />
           </div>
 
-          <div className="bg-white/60 backdrop-blur-md rounded-2xl p-4 border border-slate-200/80 shadow-sm">
+          <div className="bg-white/60 backdrop-blur-md rounded-2xl p-4 border border-slate-200/80 shadow-sm mb-22">
             <div className="flex flex-col gap-4">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-slate-600 ml-5">Select Quantity</span>
