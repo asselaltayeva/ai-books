@@ -32,8 +32,8 @@ const ProductGrid = ({ products }: Props) => {
   } = useCart();
 
   return (
-    <div className="min-h-screen bg-white">
-      <header className="sticky top-0 z-10 bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50/30">
+      <header className="sticky top-0 z-10 bg-gradient-to-br from-slate-50 to-blue-50/30">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <button className="p-2" onClick={() => setToggle(!toggle)}>
             {toggle ? (

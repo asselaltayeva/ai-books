@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Mono } from "next/font/google";
 import "./globals.css";
 import CartProvider from "@/providers/cart-context";
+import Footer from "@/components/Footer";
 
 const dmmono = DM_Mono({
   weight:'400',
@@ -19,13 +20,19 @@ export default function RootLayout({
 }>) {
   return (
     <html 
-        lang="en"
-        suppressHydrationWarning>
-      <body
-        className={`${dmmono.className}`}>
-          <CartProvider>
-          {children}
-          </CartProvider>
+      lang="en"
+      suppressHydrationWarning
+    >
+      <body className={`${dmmono.className} flex min-h-screen flex-col`}>
+        
+        <CartProvider>
+          <main className="flex-1">
+            {children}
+          </main>
+
+          <Footer />
+        </CartProvider>
+
       </body>
     </html>
   );
