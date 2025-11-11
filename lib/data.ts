@@ -2,16 +2,16 @@ export const navbarData = [
     {
         idx: 1,
         title: 'Data Science',
-        link:'/ds'
+        link:'/data-science'
     },
     {
         idx: 2,
         title: 'Machine Learning',
-        link:'/ml'
+        link:'/machine-learning'
     },
     {
         idx: 3,
         title: 'Artificial Intelligence',
-        link:'/ai'
+        link:'/artificial-intelligence'
     },
 ]
