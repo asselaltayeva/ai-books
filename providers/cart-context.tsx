@@ -65,7 +65,7 @@ const updateQuantity = useCallback((productId:string, quantity:number) => {
     ? {...item, quantity}
     : item
     ));
-},[])
+},[removeItem])
 
 const clearCart = useCallback(() => {
     setItems([]);

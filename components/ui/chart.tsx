@@ -311,6 +311,7 @@ function ChartLegendContent({
 // Helper to extract item config from a payload.
 function getPayloadConfigFromPayload(
   config: ChartConfig,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   payload: any,
   key: string
 ) {
