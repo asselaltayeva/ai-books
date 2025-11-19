@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import ProductQuantity from "@/components/product/ProductQuantity";
-import { ArrowLeft, Truck, RotateCcw, Banknote } from "lucide-react";
+import { ArrowLeft, Truck, Banknote } from "lucide-react";
 import ProductCartSheet from "@/components/ProductCartSheet";
 import ProductAction from "@/components/product/ProductAction";
 
@@ -97,10 +97,7 @@ export default async function ProductPage({
                   <Truck size={18} className="text-green-600" />
                   <span className="text-sm font-medium">Free Shipping</span>
                 </div>
-                <div className="flex items-center gap-2 text-slate-600">
-                  <RotateCcw size={18} className="text-purple-600" />
-                  <span className="text-sm font-medium">zyz</span>
-                </div>
+               
               </div>
             </div>
           </div>
@@ -115,10 +112,10 @@ export default async function ProductPage({
             />
           </div>
 
-          <div className="bg-white/60 backdrop-blur-md rounded-2xl p-4 border border-slate-200/80 shadow-sm mb-22">
+          <div className="bg-white/60 rounded-2xl p-4 mb-22">
             <div className="flex flex-col gap-4">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-slate-600 ml-5">Select Quantity</span>
+                <span className="text-sm font-medium text-slate-600 ml-4">Select Quantity</span>
                 <div className="flex items-center gap-1.5 text-xs text-green-600 bg-green-50 px-2 py-1 rounded-full">
                   <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
                   In Stock
@@ -129,13 +126,14 @@ export default async function ProductPage({
                 <ProductQuantity product={product} />
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex gap-1">
                 <ProductAction />
               </div>
             </div>
           </div>
         </section>
       </div>
+      
     </div>
   );
 }
